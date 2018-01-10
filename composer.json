@@ -1,0 +1,26 @@
+{
+    "name": "ayctor/wp-core",
+    "description": "Core functionalities for ayctor wp template",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Couteillou",
+            "email": "damien@ayctor.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/view": "5.5.x-dev",
+        "illuminate/config": "5.5.x-dev",
+        "mmucklo/inflect": "dev-master",
+        "filp/whoops": "^2.0@dev",
+        "symfony/var-dumper": "3.4.x-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "WpCore": "src/"
+        },
+        "files": ["src/WpCore/helpers.php"]
+    }
+}
