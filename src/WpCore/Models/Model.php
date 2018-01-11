@@ -50,31 +50,31 @@ class Model
      * List of field groups for the custom post type or the taxonomies
      * @var array
      */
-    protected $fields_groups;
+    protected $fields_groups = [];
 
     /**
      * List of columns for the custom post type
      * @var array
      */
-    protected $columns;
+    protected $columns = [];
 
     /**
      * List of sortable columns for the custom post type
      * @var array
      */
-    protected $sortable_columns;
+    protected $sortable_columns = [];
 
     /**
      * List of actions for the columns of the custom post type
      * @var array
      */
-    protected $columns_show;
+    protected $columns_show = [];
 
     /**
      * List of the filters for the custom post type
      * @var array
      */
-    protected $filters;
+    protected $filters = [];
 
     /**
      * Init custom post type
