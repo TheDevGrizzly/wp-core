@@ -27,3 +27,5 @@ if (defined('WP_DEBUG') && WP_DEBUG) {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
     $whoops->register();
 }
+
+new WpCore\Bootstrap\Plugins;
