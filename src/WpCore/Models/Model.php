@@ -175,7 +175,7 @@ class Model
 
             if ($column['type'] == 'custom') {
                 if (is_callable($column['custom'])) {
-                    $column['custom']();
+                    $content = $column['custom']();
                 } else if (is_string($column['custom'])) {
                     $content = $column['custom'];
                 }
