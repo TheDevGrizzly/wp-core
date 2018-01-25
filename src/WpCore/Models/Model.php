@@ -85,11 +85,9 @@ class Model
 
         // CPT
         add_action('init', [$this, 'init']);
-        add_action('current_screen', function ($current_screen) {
-            if ($current_screen->post_type == $this->post_type) {
-                $this->register();
-                $this->registerFieds();
-            }
+        add_action('acf/init', function(){
+            $this->register();
+            $this->registerFieds();
         });
 
         // Columns
@@ -249,9 +247,9 @@ class Model
      */
     protected function registerFieds()
     {
-        if (function_exists('register_field_group')) {
+        if (function_exists('acf_add_local_field_group')) {
             foreach ($this->fields_groups as $group) {
-                register_field_group($group);
+                acf_add_local_field_group($group);
             }
         }
     }
@@ -293,7 +291,7 @@ class Model
         }
 
         $this->fields_groups[$id] = [
-            'id' => $id,
+            'key' => $id,
             'title' => $title,
             'fields' => [],
             'location' => $location,
