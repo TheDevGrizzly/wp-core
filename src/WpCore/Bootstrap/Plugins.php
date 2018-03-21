@@ -2,7 +2,7 @@
 
 namespace WpCore\Bootstrap;
 
-class Plugin
+class Plugins
 {
     /**
      * Action to init tgmpa

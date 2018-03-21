@@ -40,8 +40,7 @@ class Mail
      */
     public function setMailFromAddress()
     {
-        define('MAIL_FROM_ADDRESS', config('mail.from.address'));
-        return MAIL_FROM_ADDRESS;
+        return config('mail.from.address');
     }
 
     /**
@@ -49,7 +48,6 @@ class Mail
      */
     public function setMailFromName()
     {
-        define('MAIL_FROM_NAME', config('mail.from.name'));
-        return MAIL_FROM_NAME;
+        return config('mail.from.address');
     }
 }

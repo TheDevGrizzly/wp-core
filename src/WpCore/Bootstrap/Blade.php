@@ -21,13 +21,13 @@ class Blade
      * Paths of templates to render
      * @var array
      */
-    public $templates = '';
+    protected $templates = '';
 
     /**
      * Path where template should be cached
      * @var string
      */
-    public $compiled = '';
+    protected $compiled = '';
 
     /**
      * Filesystem for bladeCompiler
@@ -73,6 +73,7 @@ class Blade
         // Setup templates and compiled paths
         $this->templates = config('blade.templates');
         $this->compiled = config('blade.compiled');
+        $this->createDirectory(config('blade.compiled'));
 
         // Dependencies
         $this->filesystem = new Filesystem;
@@ -107,6 +108,19 @@ class Blade
     }
 
     /**
+     * Create directory if not exists
+     * @param  string $dir abs path of directory
+     * @return bool If folder is created
+     */
+    private function createDirectory($dir)
+    {
+        if (!is_dir($dir)) {
+            return mkdir($dir);
+        }
+        return true;
+    }
+
+    /**
      * Custom directives
      * @return string Html of the directive
      */
@@ -130,15 +144,12 @@ class Blade
         });
 
         // @svg
-        $this->bladeCompiler->directive('svg', function ($name, $width = null, $height = null) {
-            $size = '';
-            if ($width != null) {
-                $size .= ' width="' . $width . '"';
+        $this->bladeCompiler->directive('svg', function ($attrs = []) {
+            $attributes = '';
+            foreach ($attrs as $key => $value) {
+                $attributes .= ' ' . $key . '="' . $value . '"';
             }
-            if ($height != null) {
-                $size .= ' height="' . $height . '"';
-            }
-            return '<svg role="img"' . $size . '><use xlink:href="' . get_template_directory_uri() . '/build/svg/sprite.svg#' . $name . '" /></svg>';
+            return '<svg role="img"' . $attributes . '><use xlink:href="' . get_template_directory_uri() . '/build/svg/sprite.svg#' . $name . '" /></svg>';
         });
     }
 }
