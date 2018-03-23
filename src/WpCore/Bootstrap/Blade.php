@@ -143,13 +143,18 @@ class Blade
             return '<?php endif; ?>';
         });
 
-        // @svg
-        $this->bladeCompiler->directive('svg', function ($attrs = []) {
-            $attributes = '';
-            foreach ($attrs as $key => $value) {
-                $attributes .= ' ' . $key . '="' . $value . '"';
+        // @svg('logo', ['width' => 180, 'height' => 180])
+        $this->bladeCompiler->directive('svg', function ($expression) {
+            $exp = explode(', ', $expression, 2);
+            $name = str_replace('\'', '', $exp[0]);
+            $attrs = '';
+            if (isset($exp[1])) {
+                eval('$params = ' . $exp[1] . ';');
+                foreach ($params as $key => $value) {
+                    $attrs .= ' ' . $key . '="' . $value . '"';
+                }
             }
-            return '<svg role="img"' . $attributes . '><use xlink:href="' . get_template_directory_uri() . '/build/svg/sprite.svg#' . $name . '" /></svg>';
+            return '<svg role="img"' . $attrs . '><use xlink:href="' . get_template_directory_uri() . '/build/svg/sprite.svg#' . $name . '" /></svg>';
         });
     }
 }
