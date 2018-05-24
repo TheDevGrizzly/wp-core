@@ -302,7 +302,7 @@ class Model
 
     /**
      * Helper function to add group for the custom post type
-     * @param  strong $id      Id of the group
+     * @param  string $id      Id of the group
      * @param  string $title   Title of the group
      * @param  array  $options Custom options
      */
