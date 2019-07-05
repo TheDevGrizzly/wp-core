@@ -58,6 +58,46 @@ class BlueprintCommand extends \WP_CLI_Command
     ];
 
     /**
+     * Setup to create Pdf
+     * @var array
+     */
+    protected $pdf = [
+        'blueprint' => __DIR__ . '/../Blueprints/Pdf.php',
+        'directory' => TEMPLATEPATH . '/app/Pdfs/',
+        'label'     => 'Pdf'
+    ];
+
+    /**
+     * Setup to create Role
+     * @var array
+     */
+    protected $role = [
+        'blueprint' => __DIR__ . '/../Blueprints/Role.php',
+        'directory' => TEMPLATEPATH . '/app/Roles/',
+        'label'     => 'Role'
+    ];
+
+    /**
+     * Setup to create Spreadsheet
+     * @var array
+     */
+    protected $spreadsheet = [
+        'blueprint' => __DIR__ . '/../Blueprints/Spreadsheet.php',
+        'directory' => TEMPLATEPATH . '/app/Spreadsheets/',
+        'label'     => 'Spreadsheet'
+    ];
+
+    /**
+     * Setup to create Page
+     * @var array
+     */
+    protected $page = [
+        'blueprint' => __DIR__ . '/../Blueprints/Page.php',
+        'directory' => TEMPLATEPATH . '/app/Pages/',
+        'label'     => 'Page'
+    ];
+
+    /**
      * Command to generate Model
      * @param  array $args Command arguments
      */
@@ -125,9 +165,49 @@ class BlueprintCommand extends \WP_CLI_Command
     }
 
     /**
-     * Helper to create files
+     * Command to generate Pdf
      * @param  array $args Command arguments
      */
+    public function pdf($args)
+    {
+        list($name) = $args;
+
+        $this->createFile($this->pdf, $name);
+    }
+
+    /**
+     * Command to generate Role
+     * @param  array $args Command arguments
+     */
+    public function role($args)
+    {
+        list($name) = $args;
+
+        $this->createFile($this->role, $name);
+    }
+
+    /**
+     * Command to generate Spreadsheet
+     * @param  array $args Command arguments
+     */
+    public function spreadsheet($args)
+    {
+        list($name) = $args;
+
+        $this->createFile($this->spreadsheet, $name);
+    }
+
+    /**
+     * Command to generate Page
+     * @param  array $args Command arguments
+     */
+    public function page($args)
+    {
+        list($name) = $args;
+
+        $this->createFile($this->page, $name);
+    }
+
     /**
      * Helper to create files
      * @param  array $type Setup to create the file

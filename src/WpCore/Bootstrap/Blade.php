@@ -145,13 +145,16 @@ class Blade
 
         // @svg('logo', ['width' => 180, 'height' => 180])
         $this->bladeCompiler->directive('svg', function ($expression) {
-            $exp = explode(', ', $expression, 2);
-            $name = str_replace('\'', '', $exp[0]);
+            $parts = explode(', ', $expression, 2);
+            $name = str_replace('\'', '', $parts[0]);
             $attrs = '';
-            if (isset($exp[1])) {
-                eval('$params = ' . $exp[1] . ';');
-                foreach ($params as $key => $value) {
-                    $attrs .= ' ' . $key . '="' . $value . '"';
+            if (isset($parts[1])) {
+                $parts = explode(',', $parts[1]);
+                foreach ($parts as $part) {
+                    $attr = str_replace(['\'', '[', ']'], '', explode('=>', $part));
+                    $attr[0] = trim($attr[0]);
+                    $attr[1] = trim($attr[1]);
+                    $attrs .= ' ' . $attr[0] . '="' . $attr[1] . '"';
                 }
             }
             return '<svg role="img"' . $attrs . '><use xlink:href="' . get_template_directory_uri() . '/build/svg/sprite.svg#' . $name . '" /></svg>';
