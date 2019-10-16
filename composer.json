@@ -1,7 +1,6 @@
 {
     "name": "ayctor/wp-core",
     "description": "Core functionalities for ayctor wp template",
-    "type": "project",
     "license": "MIT",
     "authors": [
         {
@@ -17,6 +16,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php" : "^7.0",
         "cron/cron": "^1.4.1",
         "filp/whoops": "^2.4.1",
         "illuminate/config": "^5.8.27",
